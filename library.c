@@ -148,3 +148,17 @@ void menu() {
     printWithDelay("2 - View my passwords\n");
     printWithDelay("0 - Exit\n");
 }
+
+void saveNewPassword(const char *password) {
+    FILE *file = fopen("myPasswords.txt", "a");
+
+    if (file == NULL) {
+        printWithDelay("Error while opening myPasswords.txt\n");
+        exit(EXIT_FAILURE);
+    }
+
+    fprintf(file, "%s", password);
+    fprintf(file, "\n");
+
+    fclose(file);
+}

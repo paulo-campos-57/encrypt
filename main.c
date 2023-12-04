@@ -63,11 +63,20 @@ int main() {
         int op = -1;
         int end = 0;
         while (op != 0) {
+            char *newPasswords;
+            size_t newPasswordsLen = 0;
             menu();
             scanf("%d", &op);
+            clearScreen();
             switch (op) {
             case 1:
-                printWithDelay("Option 1\n");
+                printWithDelay("Type the password you'd like to save: ");
+                getchar(); // clear line
+                getline(&newPasswords, &newPasswordsLen, stdin);
+                if (newPasswords[strlen(newPasswords) - 1] == '\n')
+                    newPasswords[strlen(newPasswords) - 1] = '\0';
+                saveNewPassword(newPasswords);
+                printWithDelay("\nYour password is saved\n");
                 break;
             case 2:
                 printWithDelay("Option 2\n");

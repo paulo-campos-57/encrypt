@@ -11,5 +11,6 @@ void activateLogin();
 char *getUsername();
 char *getPassword();
 void menu();
+void saveNewPassword(const char *password);
 
 #endif
