@@ -11,7 +11,8 @@ int main() {
     if (verifyLogin()) {
         char *userName;
         size_t len = 0;
-        printWithDelay("Welcome to the first login \n");
+        printWithDelay("Welcome to the encrypt\n");
+        printWithDelay("Enter your data to finish your register\n");
         printWithDelay("Type here your username: ");
         getline(&userName, &len, stdin);
         if (userName[strlen(userName) - 1] == '\n')
