@@ -162,3 +162,37 @@ void saveNewPassword(const char *password) {
 
     fclose(file);
 }
+
+void getMyPasswords() {
+    FILE *file = fopen("myPasswords.txt", "r");
+
+    if (file == NULL) {
+        printWithDelay("Error while opening myPasswords.txt\n");
+        exit(EXIT_FAILURE);
+    }
+
+    fseek(file, 0, SEEK_END);
+    long fileSize = ftell(file);
+    fseek(file, 0, SEEK_SET);
+
+    if (fileSize <= 0) {
+        printWithDelay("No passwords saved yet\n");
+        fclose(file);
+        return;
+    }
+
+    char *password = NULL;
+    size_t passwordLen = 0;
+
+    while (getline(&password, &passwordLen, file) != -1) {
+        int len = strlen(password);
+        if (len > 0 && password[len - 1] == '\n')
+            password[len - 1] = '\0';
+
+        printWithDelay(password);
+        printf("\n");
+    }
+
+    free(password);
+    fclose(file);
+}

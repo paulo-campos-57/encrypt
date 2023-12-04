@@ -79,7 +79,7 @@ int main() {
                 printWithDelay("\nYour password is saved\n");
                 break;
             case 2:
-                printWithDelay("Option 2\n");
+                getMyPasswords();
                 break;
             case 0:
                 printWithDelay("Operation terminated\n");

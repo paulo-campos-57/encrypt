@@ -12,5 +12,6 @@ char *getUsername();
 char *getPassword();
 void menu();
 void saveNewPassword(const char *password);
+void getMyPasswords();
 
 #endif
