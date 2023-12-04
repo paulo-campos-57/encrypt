@@ -61,6 +61,7 @@ int main() {
         }
         clearScreen();
         int op = -1;
+        int end = 0;
         while (op != 0) {
             menu();
             scanf("%d", &op);
@@ -71,12 +72,18 @@ int main() {
             case 2:
                 printWithDelay("Option 2\n");
                 break;
+            case 0:
+                printWithDelay("Operation terminated\n");
+                end = 1;
+                break;
             default:
                 printWithDelay("Invalid option\n");
                 break;
             }
-            pauseSystem();
-            clearScreen();
+            if (end == 0) {
+                pauseSystem();
+                clearScreen();
+            }
         }
     } else {
         printWithDelay("Unexpected values found in the file firstLogin.txt\n");
