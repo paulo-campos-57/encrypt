@@ -13,5 +13,7 @@ char *getPassword();
 void menu();
 void saveNewPassword(const char *password);
 void getMyPasswords();
+char *encrypt(const char *password);
+char *reverseEncrypt(const char *password);
 
 #endif

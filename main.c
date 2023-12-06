@@ -75,7 +75,10 @@ int main() {
                 getline(&newPasswords, &newPasswordsLen, stdin);
                 if (newPasswords[strlen(newPasswords) - 1] == '\n')
                     newPasswords[strlen(newPasswords) - 1] = '\0';
-                saveNewPassword(newPasswords);
+                printWithDelay("Encrypting your password...\n");
+                char *encrypted;
+                encrypted = encrypt(newPasswords);
+                saveNewPassword(encrypted);
                 printWithDelay("\nYour password is saved\n");
                 break;
             case 2:

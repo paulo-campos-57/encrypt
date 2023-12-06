@@ -189,10 +189,59 @@ void getMyPasswords() {
         if (len > 0 && password[len - 1] == '\n')
             password[len - 1] = '\0';
 
-        printWithDelay(password);
+        // Reverse encrypt the password before printing
+        char *reverseEncryptedPassword = reverseEncrypt(password);
+        printWithDelay(reverseEncryptedPassword);
         printf("\n");
+
+        free(reverseEncryptedPassword);
     }
 
     free(password);
     fclose(file);
+}
+
+
+char *encrypt(const char *password) {
+    char *encryptedPassword = (char *)malloc(strlen(password) + 1);
+
+    if (encryptedPassword == NULL) {
+        printWithDelay("Failed to allocate memory for encryptedPassword\n");
+        exit(EXIT_FAILURE);
+    }
+
+    for (int i = 0; i < strlen(password); i++) {
+        if (password[i] == 'a')
+            encryptedPassword[i] = '5';
+        else if (password[i] == '3')
+            encryptedPassword[i] = '9';
+        else
+            encryptedPassword[i] = password[i];
+    }
+
+    encryptedPassword[strlen(password)] = '\0';
+
+    return encryptedPassword;
+}
+
+char *reverseEncrypt(const char *password) {
+    char *reversePassword = (char *)malloc(strlen(password) + 1);
+
+    if (reversePassword == NULL) {
+        printWithDelay("Failed to allocate memory for reversePassword\n");
+        exit(EXIT_FAILURE);
+    }
+
+    for (int i = 0; i < strlen(password); i++) {
+        if (password[i] == '5')
+            reversePassword[i] = 'a';
+        else if (password[i] == '9')
+            reversePassword[i] = '3';
+        else
+            reversePassword[i] = password[i];
+    }
+
+    reversePassword[strlen(password)] = '\0';
+
+    return reversePassword;
 }
