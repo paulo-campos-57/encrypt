@@ -216,6 +216,8 @@ char *encrypt(const char *password, int shift) {
             encryptedPassword[i] = ((currentChar - 'A' + shift) % 26) + 'A';
         else if (currentChar >= 'a' && currentChar <= 'z')
             encryptedPassword[i] = ((currentChar - 'a' + shift) % 26) + 'a';
+        else if (currentChar >= '0' && currentChar <= '9')
+            encryptedPassword[i] = ((currentChar - '0' + shift) % 10) + '0';
         else
             encryptedPassword[i] = currentChar;
     }
@@ -240,6 +242,8 @@ char *reverseDecrypt(const char *encryptedMessage, int shift) {
             decryptedMessage[i] = ((currentChar - 'A' - shift + 26) % 26) + 'A';
         else if (currentChar >= 'a' && currentChar <= 'z')
             decryptedMessage[i] = ((currentChar - 'a' - shift + 26) % 26) + 'a';
+        else if (currentChar >= '0' && currentChar <= '9')
+            decryptedMessage[i] = ((currentChar - '0' - shift + 10) % 10) + '0';
         else
             decryptedMessage[i] = currentChar;
     }
