@@ -215,6 +215,12 @@ char *encrypt(const char *password) {
             encryptedPassword[i] = '5';
         else if (password[i] == '3')
             encryptedPassword[i] = '9';
+        else if (password[i] == '1')
+            encryptedPassword[i] = '^';
+        else if (password[i] == '.')
+            encryptedPassword[i] = ']';
+        else if (password[i] == 'l')
+            encryptedPassword[i] = '#';
         else
             encryptedPassword[i] = password[i];
     }
@@ -237,6 +243,12 @@ char *reverseEncrypt(const char *password) {
             reversePassword[i] = 'a';
         else if (password[i] == '9')
             reversePassword[i] = '3';
+        else if (password[i] == '^')
+            reversePassword[i] = '1';
+        else if (password[i] == ']')
+            reversePassword[i] = '.';
+        else if (password[i] == '#')
+            reversePassword[i] = 'l';
         else
             reversePassword[i] = password[i];
     }
