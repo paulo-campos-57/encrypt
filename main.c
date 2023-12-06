@@ -77,7 +77,7 @@ int main() {
                     newPasswords[strlen(newPasswords) - 1] = '\0';
                 printWithDelay("Encrypting your password...\n");
                 char *encrypted;
-                encrypted = encrypt(newPasswords);
+                encrypted = encrypt(newPasswords, 3);
                 saveNewPassword(encrypted);
                 printWithDelay("\nYour password is saved\n");
                 break;

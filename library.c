@@ -188,9 +188,7 @@ void getMyPasswords() {
         int len = strlen(password);
         if (len > 0 && password[len - 1] == '\n')
             password[len - 1] = '\0';
-
-        // Reverse encrypt the password before printing
-        char *reverseEncryptedPassword = reverseEncrypt(password);
+        char *reverseEncryptedPassword = reverseDecrypt(password, 3);
         printWithDelay(reverseEncryptedPassword);
         printf("\n");
 
@@ -202,58 +200,51 @@ void getMyPasswords() {
 }
 
 
-char *encrypt(const char *password) {
-    char *encryptedPassword = (char *)malloc(strlen(password) + 1);
+char *encrypt(const char *password, int shift) {
+    int length = strlen(password);
+    char *encryptedPassword = (char *)malloc(length + 1);
 
     if (encryptedPassword == NULL) {
         printWithDelay("Failed to allocate memory for encryptedPassword\n");
         exit(EXIT_FAILURE);
     }
 
-    for (int i = 0; i < strlen(password); i++) {
-        if (password[i] == 'a')
-            encryptedPassword[i] = '5';
-        else if (password[i] == '3')
-            encryptedPassword[i] = '9';
-        else if (password[i] == '1')
-            encryptedPassword[i] = '^';
-        else if (password[i] == '.')
-            encryptedPassword[i] = ']';
-        else if (password[i] == 'l')
-            encryptedPassword[i] = '#';
+    for (int i = 0; i < length; i++) {
+        char currentChar = password[i];
+
+        if (currentChar >= 'A' && currentChar <= 'Z')
+            encryptedPassword[i] = ((currentChar - 'A' + shift) % 26) + 'A';
+        else if (currentChar >= 'a' && currentChar <= 'z')
+            encryptedPassword[i] = ((currentChar - 'a' + shift) % 26) + 'a';
         else
-            encryptedPassword[i] = password[i];
+            encryptedPassword[i] = currentChar;
     }
 
-    encryptedPassword[strlen(password)] = '\0';
-
+    encryptedPassword[length] = '\0';
     return encryptedPassword;
 }
 
-char *reverseEncrypt(const char *password) {
-    char *reversePassword = (char *)malloc(strlen(password) + 1);
+char *reverseDecrypt(const char *encryptedMessage, int shift) {
+    int length = strlen(encryptedMessage);
+    char *decryptedMessage = (char *)malloc(length + 1);
 
-    if (reversePassword == NULL) {
-        printWithDelay("Failed to allocate memory for reversePassword\n");
+    if (decryptedMessage == NULL) {
+        printWithDelay("Failed to allocate memory for decryptedMessage\n");
         exit(EXIT_FAILURE);
     }
 
-    for (int i = 0; i < strlen(password); i++) {
-        if (password[i] == '5')
-            reversePassword[i] = 'a';
-        else if (password[i] == '9')
-            reversePassword[i] = '3';
-        else if (password[i] == '^')
-            reversePassword[i] = '1';
-        else if (password[i] == ']')
-            reversePassword[i] = '.';
-        else if (password[i] == '#')
-            reversePassword[i] = 'l';
+    for (int i = 0; i < length; i++) {
+        char currentChar = encryptedMessage[i];
+
+        if (currentChar >= 'A' && currentChar <= 'Z')
+            decryptedMessage[i] = ((currentChar - 'A' - shift + 26) % 26) + 'A';
+        else if (currentChar >= 'a' && currentChar <= 'z')
+            decryptedMessage[i] = ((currentChar - 'a' - shift + 26) % 26) + 'a';
         else
-            reversePassword[i] = password[i];
+            decryptedMessage[i] = currentChar;
     }
 
-    reversePassword[strlen(password)] = '\0';
+    decryptedMessage[length] = '\0';
 
-    return reversePassword;
+    return decryptedMessage;
 }
