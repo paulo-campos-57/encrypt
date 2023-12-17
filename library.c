@@ -85,7 +85,10 @@ void savePassword(const char *password) {
         exit(EXIT_FAILURE);
     }
 
-    fprintf(file, "%s", password);
+    char *encrypted;
+    encrypted = encrypt(password, 3);
+
+    fprintf(file, "%s", encrypted);
 
     fclose(file);
 }
@@ -132,14 +135,18 @@ char *getPassword() {
 
     if (content == NULL) {
         printWithDelay("Memory allocation error\n");
+        fclose(file);
         exit(EXIT_FAILURE);
     }
 
     fread(content, sizeof(char), fileSize, file);
     content[fileSize] = '\0';
 
+    char *check;
+    check = reverseDecrypt(content, 3);
+
     fclose(file);
-    return content;
+    return check;
 }
 
 void menu() {
