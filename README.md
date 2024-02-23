@@ -9,7 +9,7 @@ This program receives your passwords and saves them in an encrypted manner. Deve
   <tr>- First is necessary to clone the repository to your machine, using the command:
   <dt> 
   
-    git clone https://github.com/paulo-campos-57/banker-algorithm.git
+    git clone https://github.com/paulo-campos-57/encrypt.git
 
   </dt>
   </tr>
@@ -51,7 +51,7 @@ Este programa recebe suas senhas e as salva de forma criptografada. Desenvolvido
   <tr>- Primeiro é necessário clonar o repositório em sua máquina, usando o comando:
   <dt> 
   
-    git clone https://github.com/paulo-campos-57/banker-algorithm.git
+    git clone https://github.com/paulo-campos-57/encrypt.git
 
   </dt>
   </tr>
