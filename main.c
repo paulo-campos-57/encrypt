@@ -97,8 +97,8 @@ int main()
                     printWithDelay("Invalid option\n");
                     break;
                 }
-                if (end == 0) {
-                    pauseSystem();
+                if (end == 1) {
+                    sleep(3);
                     clearScreen();
                     running = 0;
                 }

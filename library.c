@@ -31,12 +31,23 @@ int verifyLogin() {
     char c;
 
     while ((c = fgetc(file)) != EOF) {
-        if (c == '1')
+        switch (c) {
+        case '1':
             flag = 1; // it's the first login
-        else if (c == '0')
+            break;
+        case '0':
             flag = 0; // it's not the first login
-        else
+            break;
+        default:
             flag = -1; // not an expected value
+            break;
+        }
+        // if (c == '1')
+        //     flag = 1; // it's the first login
+        // else if (c == '0')
+        //     flag = 0; // it's not the first login
+        // else
+        //     flag = -1; // not an expected value
     }
 
     fclose(file);
